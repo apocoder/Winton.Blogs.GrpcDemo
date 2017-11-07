@@ -1,31 +1,8 @@
-FROM python:2.7
-
-RUN apt-get update && apt-get install -y --no-install-recommends \
-		bzip2 \
-		unzip \
-		xz-utils \
-	&& rm -rf /var/lib/apt/lists/*
-
-RUN echo 'deb http://deb.debian.org/debian jessie-backports main' > /etc/apt/sources.list.d/jessie-backports.list
-
-# Default to UTF-8 file.encoding
-ENV LANG C.UTF-8
-
-
-# see https://bugs.debian.org/775775
-# and https://github.com/docker-library/java/issues/19#issuecomment-70546872
-ENV CA_CERTIFICATES_JAVA_VERSION 20161107~bpo8+1
-
-RUN set -x \
-	&& apt-get update \
-	&& apt-get install -y \
-	jessie-backports \
-	ca-certificates-java \
-	openjdk-8-jre \
-	openjdk-8-jdk \
-  openjdk-8-jdk-headless \
-	openjdk-8-jre-headless
-
-
-RUN apt-get update \
-	&& apt-get install -y sbt
+FROM openjdk:8
+RUN \
+  curl -L -o sbt-$SBT_VERSION.deb http://dl.bintray.com/sbt/debian/sbt-$SBT_VERSION.deb && \
+  dpkg -i sbt-$SBT_VERSION.deb && \
+  rm sbt-$SBT_VERSION.deb && \
+  apt-get update && \
+  apt-get install sbt && \
+  sbt sbtVersion
