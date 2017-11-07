@@ -21,7 +21,8 @@ RUN set -x \
 	&& apt-get install -y \
 	openjdk-8-jre \
 	openjdk-8-jdk \
-  openjdk-8-jdk-headless
+  openjdk-8-jdk-headless \
+	openjdk-8-jrk-headless
 
 
 RUN apt-get update \
