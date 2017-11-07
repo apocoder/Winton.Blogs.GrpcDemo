@@ -21,7 +21,7 @@ RUN { \
 	} > /usr/local/bin/docker-java-home \
 	&& chmod +x /usr/local/bin/docker-java-home
 
-ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk
+ENV JAVA_HOME /usr/lib/jvm/java-1.8.0-openjdk
 
 ENV JAVA_VERSION 8u131
 ENV JAVA_DEBIAN_VERSION 8u131-b11-1~bpo8+1
