@@ -19,6 +19,7 @@ ENV CA_CERTIFICATES_JAVA_VERSION 20161107~bpo8+1
 RUN set -x \
 	&& apt-get update \
 	&& apt-get install -y \
+	openjdk-8-jre \
 	openjdk-8-jdk \
   openjdk-8-jdk-headless
 
