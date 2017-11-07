@@ -22,7 +22,7 @@ RUN set -x \
 	openjdk-8-jre \
 	openjdk-8-jdk \
   openjdk-8-jdk-headless \
-	openjdk-8-jrk-headless
+	openjdk-8-jre-headless
 
 
 RUN apt-get update \
