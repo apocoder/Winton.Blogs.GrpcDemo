@@ -20,8 +20,8 @@ RUN set -x \
 	&& apt-get update \
 	&& apt-get install -y \
 	openjdk-8-jdk \
-  openjdk-8-jdk-headless \
+  openjdk-8-jdk-headless
 
 
 RUN apt-get update \
-	&& apt-get install -y sbt \
+	&& apt-get install -y sbt
