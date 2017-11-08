@@ -45,15 +45,15 @@ node {
 
   stage ('Build and Push Docker Image') {
     withCredentials([[$class: "UsernamePasswordMultiBinding", usernameVariable: 'DOCKERHUB_USER', passwordVariable: 'DOCKERHUB_PASS', credentialsId: 'Docker Hub']]) {
-      sh 'docker login --username $DOCKERHUB_USER --password $DOCKERHUB_PASS'
+      sh 'docker login --username $DOCKERHUB_USER --password $DOCKERHUB_PASS '
     }
-    def serverImage = docker.build("sambott/grpc-test:${GIT_VERSION}", 'server/target/docker/stage')
+    def serverImage = docker.build("kowboy07/grpc-test:${GIT_VERSION}", 'server/target/docker/stage')
     serverImage.push()
     sh 'docker logout'
   }
 
   stage ('Deploy to DEV') {
-    devAddress = deployContainer("sambott/grpc-test:${GIT_VERSION}", 'DEV')
+    devAddress = deployContainer("kowboy07/grpc-test:${GIT_VERSION}", 'DEV')
   }
 
   stage ('Verify Deployment') {
@@ -68,7 +68,7 @@ stage 'Deploy to LIVE'
     input message:'Approve deployment to LIVE?'
   }
   node {
-    deployContainer("sambott/grpc-test:${GIT_VERSION}", 'LIVE')
+    deployContainer("kowboy07/grpc-test:${GIT_VERSION}", 'LIVE')
   }
 
 def deployContainer(image, env) {
