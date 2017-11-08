@@ -47,13 +47,13 @@ node {
     withCredentials([[$class: "UsernamePasswordMultiBinding", usernameVariable: 'DOCKERHUB_USER', passwordVariable: 'DOCKERHUB_PASS', credentialsId: 'Docker Hub']]) {
       sh 'docker login --username $DOCKERHUB_USER --password $DOCKERHUB_PASS '
     }
-    def serverImage = docker.build("kowboy07/grpc-test:${GIT_VERSION}", 'server/target/docker/stage')
+    def serverImage = docker.build("apocoder/grpc-test:${GIT_VERSION}", 'server/target/docker/stage')
     serverImage.push()
     sh 'docker logout'
   }
 
   stage ('Deploy to DEV') {
-    devAddress = deployContainer("kowboy07/grpc-test:${GIT_VERSION}", 'DEV')
+    devAddress = deployContainer("apocoder/grpc-test:${GIT_VERSION}", 'DEV')
   }
 
   stage ('Verify Deployment') {
