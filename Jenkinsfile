@@ -68,7 +68,7 @@ stage 'Deploy to LIVE'
     input message:'Approve deployment to LIVE?'
   }
   node {
-    deployContainer("kowboy07/grpc-test:${GIT_VERSION}", 'LIVE')
+    deployContainer("apocoder/grpc-test:${GIT_VERSION}", 'LIVE')
   }
 
 def deployContainer(image, env) {
