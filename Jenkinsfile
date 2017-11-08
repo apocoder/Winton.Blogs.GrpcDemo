@@ -53,7 +53,7 @@ node {
   }
 
   stage ('Deploy to DEV') {
-    devAddress = deployContainer("apocoder/grpc-test:${GIT_VERSION}", 'DEV')
+    devAddress = deployContainer("apocoder/grpc-test:${GIT_VERSION}", 'dev')
   }
 
   stage ('Verify Deployment') {
@@ -68,7 +68,7 @@ stage 'Deploy to LIVE'
     input message:'Approve deployment to LIVE?'
   }
   node {
-    deployContainer("apocoder/grpc-test:${GIT_VERSION}", 'LIVE')
+    deployContainer("apocoder/grpc-test:${GIT_VERSION}", 'live')
   }
 
 def deployContainer(image, env) {
