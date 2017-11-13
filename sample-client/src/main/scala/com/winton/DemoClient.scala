@@ -12,7 +12,7 @@ object DemoClient extends App with Logging {
   implicit val ec = scala.concurrent.ExecutionContext.global
 
   val host = Try(args(0)).getOrElse("localhost")
-  val port = Try(args(1).toInt).getOrElse(11235)
+  val port = 80
 
   logger.info("Creating client")
   val channel = ManagedChannelBuilder.forAddress(host, port).usePlaintext(true).build
@@ -29,4 +29,3 @@ object DemoClient extends App with Logging {
   Await.result(work, 10.seconds)
 
 }
-
