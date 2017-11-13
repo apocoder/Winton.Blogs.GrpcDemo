@@ -73,7 +73,7 @@ stage 'Deploy to LIVE'
 
 def deployContainer(image, env) {
   docker.image('lachlanevenson/k8s-kubectl:v1.5.2').inside {
-  def kubectl = "kubectl  --certificate-authority=ca.pem  --context=${env} --server=https://kz8s-apiserver-dev-375024213.us-west-2.elb.amazonaws.com --kubeconfig=\kubeconfig"
+  def kubectl = "kubectl  --certificate-authority=ca.pem  --context=${env} --server=https://kz8s-apiserver-dev-375024213.us-west-2.elb.amazonaws.com --kubeconfig=kubeconfig"
   sh "${kubectl} set image deployment/grpc-demo grpc-demo=${image}"
   sh "${kubectl} rollout status deployment/grpc-demo"
   return sh (
